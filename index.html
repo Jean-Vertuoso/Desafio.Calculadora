@@ -40,15 +40,18 @@
 
                             <input
                                 type="button"
-                                value="MRC">
+                                value="MRC"
+                                onclick="mostrarNumeroMemoria()">
 
                             <input
                                 type="button"
-                                value="M-">
+                                value="M-"
+                                onclick="descontarMemoria()">
 
                             <input
                                 type="button"
-                                value="M+">                            
+                                value="M+"
+                                onclick="adicionarNaMemoria()">                            
 
                         </div>
 
@@ -105,7 +108,8 @@
                             <input
                                 type="button"
                                 value="4"
-                                onclick="inserirNumero(4)">
+                                onclick="inserirNumero(4)"
+                                onkeypress="digitarNumero(4)">
 
                             <input
                                 type="button"
@@ -182,6 +186,7 @@
 
     var numeroDigitado = "";
     var numeroGuardado = "";
+    var numeroMemoria = "";
     var novoNumero = false;
     const visor = document.getElementById('idVisor');
     var operador;
@@ -212,6 +217,11 @@
     }
 
 //--------------------------------------------------------------------\\ Função para inserir números na tela //---------------------------------------------------------------\\
+        
+    function digitarNumero(event) {
+        var num = event.keyCode;
+            console.log(num)
+        }
 
     function inserirNumero(numero){
 
@@ -234,7 +244,7 @@
 
         novoNumero = true;
 
-        if ((op == '+') && (novoNumero) && (numeroDigitado != "")){
+        if ((op == '+') && (novoNumero)){
 
             numeroGuardado = Number(numeroGuardado) + Number(visor.value);
             operador = op;
@@ -330,9 +340,11 @@
                 visor.value = numeroDigitado / 100;
                 numeroDigitado = visor.value;
 
-            } else {
-                return limpar();
-            }
+                } else {
+
+                    return limpar();
+                    
+                }
 
     }
 
@@ -345,26 +357,42 @@
             visor.value = visor.value**(1/2);
 
         } else {
-            return;
-        }
-
-    }
-
-//---------------------------------------------------------------------\\ Mapeamento de botões do teclado //-------------------------------------------------------------------\\
-
-    function encontrarRaiz(){
-
-        if (numeroDigitado != "0"){
-
-            visor.value = visor.value**(1/2);
-
-        } else {
 
             return;
 
         }
 
     }
+
+//---------------------------------------------------------------\\ Função para controlar números da memória //----------------------------------------------------------------\\
+
+    function adicionarNaMemoria(){
+
+        numeroMemoria = Number(numeroMemoria) + Number(visor.value);
+        numeroDigitado = "";
+        console.log(numeroMemoria);
+
+    }
+
+    function descontarMemoria(){
+
+        numeroMemoria = Number(numeroMemoria) - Number(visor.value);
+        numeroDigitado = "";
+        console.log(numeroMemoria);
+
+    }
+
+    function mostrarNumeroMemoria(){
+
+        visor.value = Number(numeroMemoria);
+        console.log(numeroGuardado)
+        numeroDigitado = "";
+        numeroMemoria = "";
+        
+    }
+
+//------------------------------------------------------------------------\\ Mapeamento de teclas do teclado //----------------------------------------------------------------\\
+
 
 </script>
 
