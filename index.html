@@ -217,11 +217,6 @@
     }
 
 //--------------------------------------------------------------------\\ Função para inserir números na tela //---------------------------------------------------------------\\
-        
-    function digitarNumero(event) {
-        var num = event.keyCode;
-            console.log(num)
-        }
 
     function inserirNumero(numero){
 
@@ -230,6 +225,45 @@
 
     }
 
+    document.onkeypress = function (evento){
+
+        let numero = Number(evento.key)
+
+        if (!isNaN(numero)){
+
+            numeroDigitado = numeroDigitado + evento.key;
+            visor.value = numeroDigitado;
+
+            if((numero == '+')){
+
+                selecionarOperador('+')
+
+            }
+
+            if((numero == '-')){
+
+                selecionarOperador('-')
+
+            }
+
+            if((numero == '*')){
+
+                selecionarOperador('*')
+
+            }
+
+            if((numero == '/')){
+
+                selecionarOperador('/')
+
+            }
+        
+        
+        
+        } else {
+            return;
+        }
+    }
 //--------------------------------------------------------------------\\ Função para atualizar display ao calcular //---------------------------------------------------------\\
 
     function atualizarDisplay(){
