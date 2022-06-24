@@ -209,10 +209,7 @@
 
     function limpar(){
 
-        document.getElementById("idVisor").value = 0;
-        novoNumero = true;
-        numeroGuardado = "";
-        numeroDigitado = "";
+        location.reload();
 
     }
 
@@ -236,7 +233,7 @@
                 selecionarOperador('-');
 
                 }else if(evento.key == '*'){
-
+                    
                     selecionarOperador('*');
 
                     }else if(evento.key == '/'){
@@ -308,7 +305,7 @@
 
                     if (visor.value != "0"){
                         
-                        numeroGuardado = visor.value + 1;
+                        numeroGuardado = 1;
                         numeroGuardado = Number(numeroGuardado) * Number(visor.value);
                         operador = op;
                         numeroDigitado = "";
