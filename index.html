@@ -108,8 +108,7 @@
                             <input
                                 type="button"
                                 value="4"
-                                onclick="inserirNumero(4)"
-                                onkeypress="digitarNumero(4)">
+                                onclick="inserirNumero(4)">
 
                             <input
                                 type="button"
@@ -205,6 +204,7 @@
             limpar();
 
         }
+
     }
 
     function limpar(){
@@ -225,45 +225,46 @@
 
     }
 
-    document.onkeypress = function (evento){
+    document.onkeydown = function (evento){
 
-        let numero = Number(evento.key)
+        if(evento.key == '+'){
+            
+            selecionarOperador('+');
 
-        if (!isNaN(numero)){
+            }else if(evento.key == '-'){
 
-            numeroDigitado = numeroDigitado + evento.key;
-            visor.value = numeroDigitado;
+                selecionarOperador('-');
 
-            if((numero == '+')){
+                }else if(evento.key == '*'){
 
-                selecionarOperador('+')
+                    selecionarOperador('*');
 
-            }
+                    }else if(evento.key == '/'){
 
-            if((numero == '-')){
+                        selecionarOperador('/');
 
-                selecionarOperador('-')
+                        }else if(evento.key == ','){
+                        
+                            numeroDigitado = numeroDigitado + '.';
+                            visor.value = numeroDigitado;
 
-            }
+                            }else if((evento.key == '0') || (evento.key == '1') || (evento.key == '2') || (evento.key == '3') || (evento.key == '4') || (evento.key == '5') ||  (evento.key == '6') || (evento.key == '7') || (evento.key == '8') || (evento.key == '9')){
 
-            if((numero == '*')){
+                                numeroDigitado = numeroDigitado + evento.key;
+                                visor.value = numeroDigitado;
+                            
+                                }else if(evento.key == 'Enter'){
+                            
+                                    calcular();
 
-                selecionarOperador('*')
+                                    }else if(evento.key == 'Backspace'){
+                            
+                                        backspace();
 
-            }
+                                    }
 
-            if((numero == '/')){
-
-                selecionarOperador('/')
-
-            }
-        
-        
-        
-        } else {
-            return;
-        }
     }
+
 //--------------------------------------------------------------------\\ Função para atualizar display ao calcular //---------------------------------------------------------\\
 
     function atualizarDisplay(){
@@ -307,7 +308,7 @@
 
                     if (visor.value != "0"){
                         
-                        numeroGuardado = 1;
+                        numeroGuardado = visor.value + 1;
                         numeroGuardado = Number(numeroGuardado) * Number(visor.value);
                         operador = op;
                         numeroDigitado = "";
